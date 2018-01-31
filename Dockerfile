@@ -1,5 +1,10 @@
-FROM composer/composer
+FROM composer
 
-RUN apt-get update && apt-get install -y libpq-dev libmcrypt-dev && rm -r /var/lib/apt/lists/*
-
-RUN docker-php-ext-install mcrypt mbstring pdo_pgsql pdo_mysql
+RUN apk add --no-cache \
+		php7-mbstring \
+        php7-mcrypt \
+        php7-pdo \
+        php7-pdo_mysql \
+        php7-pdo_pgsql \
+        php7-pdo_sqlite \
+    && rm -rf /var/cache/apk/*
